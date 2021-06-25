@@ -1,0 +1,30 @@
+<div class="screen" cdkDropListGroup>
+  <div class="drag">
+      <mat-card>
+            <div class="searchbox">
+                <input class="search" type="text" placeholder="Search">
+            </div>
+            <div cdkDropList [cdkDropListData] = "cards"  (cdkDropListDropped)="drop($event)" >
+                <div class="dragbox" *ngFor = "let card of cards" cdkDrag>
+                    <mat-card>{{card}}</mat-card>
+                </div>
+            </div>
+        </mat-card>
+  </div>
+  <div class="drop">      
+      <mat-card>
+            <div class="count">
+                  <input [(ngModel)] = "values" type="text" placeholder="Type here..">
+                  <button (click)="go()">Go</button>
+            </div>
+            <div style="display: flex; flex-wrap: wrap;">
+                  <div class="space" *ngFor ="let number of myCollection" 
+                      cdkDropList [cdkDropListData] = "dropcards" (cdkDropListDropped)="drop($event)">
+                    <div *ngFor = "let card of dropcards" cdkDrag>
+                        <mat-card>{{card}}</mat-card>
+                    </div>
+                  </div>
+            </div>
+      </mat-card>
+  </div>
+</div>
